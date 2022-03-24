@@ -4,6 +4,7 @@ import {SupplyProduct, SupplySummary} from "./supply";
 import {SupplySummaryRepositoryService} from "../../persitences/supply/supply-summary-repository.service";
 import {SupplyToAddDao} from "../../persitences/stock/stock.dao";
 import {StockRepositoryService} from "../../persitences/stock/stock-repository.service";
+import {CatalogRepositoryService} from "../../persitences/catalog/catalog-repository.service";
 
 
 @Injectable()
@@ -11,6 +12,7 @@ export class SupplyUsecase {
 
     constructor(private stockRepository: StockRepositoryService,
                 private supplyRepositoryService: SupplyRepositoryService,
+                private catalogRepository: CatalogRepositoryService,
                 private supplySummaryRepositoryService: SupplySummaryRepositoryService) {
     }
 
@@ -26,9 +28,27 @@ export class SupplyUsecase {
     public async addSupply(products: SupplyProduct[]): Promise<void> {
         let price = 0
         let quantity = 0
+        let catalogProducts = await this.catalogRepository.getCatalog()
         for (const product of products) {
-            // TODO: remplacer ean par l'id du catalogue
-            await this.stockRepository.addStock(new SupplyToAddDao(product.ean, product.quantity))
+            let productId;
+            let findProduct: boolean = false;
+            for(const catalogProduct of catalogProducts) {
+                if(catalogProduct.ean === product.ean) {
+                    productId = catalogProduct._id
+                    findProduct = true
+                    break
+                }
+            }
+            if(findProduct === false) {
+                productId = await this.catalogRepository.addProduct({
+                    ean: product.ean,
+                    name: product.name,
+                    description: product.description,
+                    categories: [],
+                    price: product.purchasePricePerUnit
+                })
+            }
+            await this.stockRepository.addStock(new SupplyToAddDao(productId, product.quantity))
             price += product.quantity * product.purchasePricePerUnit;
             quantity += product.quantity;
         }
