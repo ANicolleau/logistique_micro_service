@@ -17,3 +17,12 @@ export class SupplySummary {
     totalNbProducts: number;
     totalPurchasePrice: number;
 }
+
+export class RequiredSupply {
+    productId: string;
+
+    constructor(productId: string) {
+        this.productId = productId;
+    }
+}
+

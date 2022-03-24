@@ -1,15 +1,24 @@
+import {IsNotEmpty, IsNumber, IsString} from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 
 export class SupplySummaryDto {
+    @IsNotEmpty()
+    @IsNumber()
+    nbSupplies: number;
+
+    @IsNotEmpty()
+    @IsNumber()
+    totalNbProducts: number;
+
+    @IsNotEmpty()
+    @IsNumber()
+    totalPurchasePrice: number;
+
     constructor(nbSupplies: number, totalNbProducts: number, totalPurchasePrice: number) {
         this.nbSupplies = nbSupplies;
         this.totalNbProducts = totalNbProducts;
         this.totalPurchasePrice = totalPurchasePrice;
     }
-
-    nbSupplies: number;
-    totalNbProducts: number;
-    totalPurchasePrice: number;
 }
 
 class SupplyProductDto {
@@ -23,6 +32,12 @@ class SupplyProductDto {
     purchasePricePerUnit: number;
     @ApiProperty()
     quantity: number;
+}
+
+export class RequiredSupplyDto {
+    @IsNotEmpty()
+    @IsString()
+    productId: string;
 }
 
 

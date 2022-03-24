@@ -14,6 +14,14 @@ export class CatalogRepositoryService {
         return result.data
     }
 
+    public async getProduct(productId:string): Promise<ProductDao> {
+        const server = 'https://fhemery-logistics.herokuapp.com/api/products/';
+
+        const result = await axios.get(server + productId)
+        //@ts-ignore
+        return result.data
+    }
+
     public async addProduct(product: ProductDao): Promise<string> {
         const server = 'https://fhemery-logistics.herokuapp.com';
         const path: string = '/api/products/';
