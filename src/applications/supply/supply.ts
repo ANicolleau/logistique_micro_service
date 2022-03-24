@@ -1,4 +1,4 @@
-export interface SupplyProductUseCase {
+export interface SupplyProduct {
     ean: string;
     name: string;
     description: string;

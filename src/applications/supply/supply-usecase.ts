@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {SupplyRepositoryService,} from "../../persitences/supply/supply-repository.service";
-import {SupplyProductUseCase, SupplySummary} from "./supply";
+import {SupplyProduct, SupplySummary} from "./supply";
 import {SupplySummaryRepositoryService} from "../../persitences/supply/supply-summary-repository.service";
 import {SupplyToAddDao} from "../../persitences/stock/stock.dao";
 import {StockRepositoryService} from "../../persitences/stock/stock-repository.service";
@@ -20,7 +20,7 @@ export class SupplyUsecase {
         return new SupplySummary(supplySummary.nbSupplies, supplySummary.totalNbProducts, supplySummary.totalPurchasePrice)
     }
 
-    public async addSupply(products: SupplyProductUseCase[]): Promise<void> {
+    public async addSupply(products: SupplyProduct[]): Promise<void> {
         for (const product of products) {
             // TODO: remplacer ean par l'id du catalogue
             await this.stockRepository.addStock(new SupplyToAddDao(product.ean, product.quantity))

@@ -3,7 +3,7 @@ import {SupplySummaryDto} from "./supply.dto";
 import {SupplyUsecase} from "../../applications/supply/supply-usecase";
 import {ApiResponse} from "@nestjs/swagger";
 import {SupplyInputDto} from "./supply.dto";
-import {SupplyProductUseCase} from "../../applications/supply/supply";
+import {SupplyProduct} from "../../applications/supply/supply";
 
 
 @Controller('api/supply')
@@ -22,7 +22,7 @@ export class SupplyController {
     @HttpCode(204)
     @ApiResponse({status: 204, description: 'Add a new supply to the stock'})
     public async addSupply(@Body() supply: SupplyInputDto) {
-        const products: SupplyProductUseCase[] = [];
+        const products: SupplyProduct[] = [];
         for (const product of supply.products) {
             products.push({
                 ean: product.ean,
