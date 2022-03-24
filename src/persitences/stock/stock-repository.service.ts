@@ -7,7 +7,7 @@ export class StockRepositoryService {
     constructor(private httpService: HttpService) {}
 
     public async addStock(supplyToAdd: SupplyToAddDao): Promise<void> {
-        const server = 'localhost';
+        const server = 'https://archi-logicielle.herokuapp.com';
         const path: string = '/api/stock/' + supplyToAdd.productId + '/movement';
 
         await this.httpService.post(server + path, {body: supplyToAdd})
