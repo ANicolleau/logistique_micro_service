@@ -2,7 +2,7 @@ name: NodeJS
 
 on:
   push:
-    branches: [ ci-1 ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
