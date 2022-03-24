@@ -15,7 +15,7 @@ describe('AppController', () => {
   describe('pong', () => {
     it('should return "Pong !"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getHello()).toBe('Pong !');
+      expect(appController.ping()).toBe('Pong !');
     });
   });
 });
