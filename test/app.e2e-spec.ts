@@ -15,10 +15,16 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/api/ping (GET)', () => {
+  it('should return pong with code 200.', () => {
     return request(app.getHttpServer())
       .get('/api/ping')
       .expect(200)
       .expect('Pong !');
   });
+
+  it('should return code 204 on product supply', () => {
+    return request(app.getHttpServer())
+        .post('/api/supply')
+        .expect(204)
+  })
 });

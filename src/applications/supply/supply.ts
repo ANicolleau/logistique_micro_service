@@ -1,3 +1,11 @@
+export interface SupplyProduct {
+    ean: string;
+    name: string;
+    description: string;
+    purchasePricePerUnit: number;
+    quantity: number;
+}
+
 export class SupplySummary {
     constructor(nbSupplies: number, totalNbProducts: number, totalPurchasePrice: number) {
         this.nbSupplies = nbSupplies;

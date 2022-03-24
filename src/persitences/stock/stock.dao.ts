@@ -21,12 +21,13 @@ export class StockDao {
 }
 
 export class SupplyToAddDao {
-    product_id: string;
+    productId: string;
     quantity: number;
-
+    status: string;
 
     constructor(product_id: string, quantity: number) {
-        this.product_id = product_id;
+        this.productId = product_id;
         this.quantity = quantity;
+        this.status = 'Supply';
     }
 }
