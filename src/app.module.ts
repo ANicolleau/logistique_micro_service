@@ -11,6 +11,7 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {StockRepositoryService} from "./persitences/stock/stock-repository.service";
 import {SupplyController} from "./controllers/supply/supply.controller";
 import {CatalogRepositoryService} from "./persitences/catalog/catalog-repository.service";
+import {ProviderRepositoryService} from "./persitences/provider/provider-repository.service";
 
 @Module({
     imports: [TypeOrmModule.forRoot({
@@ -28,7 +29,7 @@ import {CatalogRepositoryService} from "./persitences/catalog/catalog-repository
     }),
         TypeOrmModule.forFeature([SupplySummaryDao, SupplyDao])],
     controllers: [AppController, PingController, SupplyController],
-    providers: [AppService, SupplyUsecase, SupplySummaryRepositoryService, SupplyRepositoryService, StockRepositoryService, CatalogRepositoryService],
+    providers: [AppService, SupplyUsecase, SupplySummaryRepositoryService, SupplyRepositoryService, StockRepositoryService, CatalogRepositoryService, ProviderRepositoryService],
 })
 export class AppModule {
 }

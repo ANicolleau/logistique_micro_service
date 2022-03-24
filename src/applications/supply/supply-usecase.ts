@@ -1,9 +1,11 @@
 import {Injectable} from '@nestjs/common';
 import {SupplyRepositoryService,} from "../../persitences/supply/supply-repository.service";
-import {SupplyProduct, SupplySummary} from "./supply";
+import {RequiredSupply, SupplyProduct, SupplySummary} from "./supply";
 import {SupplySummaryRepositoryService} from "../../persitences/supply/supply-summary-repository.service";
 import {SupplyToAddDao} from "../../persitences/stock/stock.dao";
 import {StockRepositoryService} from "../../persitences/stock/stock-repository.service";
+import { ProviderRepositoryService } from 'src/persitences/provider/provider-repository.service';
+import { RequiredSupplyToAddDao } from 'src/persitences/provider/provider.dao';
 import {CatalogRepositoryService} from "../../persitences/catalog/catalog-repository.service";
 
 
@@ -13,6 +15,7 @@ export class SupplyUsecase {
     constructor(private stockRepository: StockRepositoryService,
                 private supplyRepositoryService: SupplyRepositoryService,
                 private catalogRepository: CatalogRepositoryService,
+                private providerRepositoryService: ProviderRepositoryService,
                 private supplySummaryRepositoryService: SupplySummaryRepositoryService) {
     }
 
@@ -23,6 +26,13 @@ export class SupplyUsecase {
             supplySummary = await this.supplySummaryRepositoryService.create()
         }
         return new SupplySummary(supplySummary.nbSupplies, supplySummary.totalNbProducts, supplySummary.totalPurchasePrice)
+    }
+
+
+    public async requiredSupply(requiredSupply: RequiredSupply): Promise<void> {
+        const productId = requiredSupply.productId
+        const catalogProduct = await this.catalogRepository.getProduct(productId)
+        await this.providerRepositoryService.requiredSupply(new RequiredSupplyToAddDao(catalogProduct.ean))
     }
 
     public async addSupply(products: SupplyProduct[]): Promise<void> {

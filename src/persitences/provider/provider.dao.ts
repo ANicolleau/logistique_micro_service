@@ -1,32 +1,17 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 
-@Entity()
-export class ProviderDao {
-    @PrimaryGeneratedColumn()
-    id: string;
+export class RequiredSupplyDao {
+    ean: string;
 
-    @Column()
-    product_id: string;
-
-    @Column()
-    quantity: number;
-
-    //TODO ajouter le prix ici ou le récuperer dans le catalogue
-
-    constructor(id: string, product_id: string, quantity: number) {
-        this.id = id;
-        this.product_id = product_id;
-        this.quantity = quantity;
+    constructor(ean: string) {
+        this.ean = ean;
     }
 }
 
-export class ProviderToAddDao {
-    product_id: string;
-    quantity: number;
+export class RequiredSupplyToAddDao {
+    ean: string;
 
-
-    constructor(product_id: string, quantity: number) {
-        this.product_id = product_id;
-        this.quantity = quantity;
+    constructor(ean: string) {
+        this.ean = ean;
     }
 }
