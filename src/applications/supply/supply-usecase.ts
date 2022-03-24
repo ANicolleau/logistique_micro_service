@@ -16,7 +16,10 @@ export class SupplyUsecase {
 
 
     public async getSummary(): Promise<SupplySummary> {
-        const supplySummary = await this.supplySummaryRepositoryService.get()
+        let supplySummary = await this.supplySummaryRepositoryService.get()
+        if (!supplySummary) {
+            supplySummary = await this.supplySummaryRepositoryService.create()
+        }
         return new SupplySummary(supplySummary.nbSupplies, supplySummary.totalNbProducts, supplySummary.totalPurchasePrice)
     }
 
@@ -25,6 +28,15 @@ export class SupplyUsecase {
             // TODO: remplacer ean par l'id du catalogue
             await this.stockRepository.addStock(new SupplyToAddDao(product.ean, product.quantity))
         }
+        const supplySummary = await this.supplySummaryRepositoryService.get()
+        supplySummary.nbSupplies += 1
+        supplySummary.totalPurchasePrice += price
+        supplySummary.totalNbProducts += quantity
+        await this.supplySummaryRepositoryService.update(supplySummary)
+    }
+
+    public async updateSummary(supplySummary: SupplySummary): Promise<void> {
+        await this.supplySummaryRepositoryService.update(supplySummary)
     }
 }
 
