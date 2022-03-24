@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import {Module} from '@nestjs/common';
+import {AppController} from './app.controller';
+import {AppService} from './app.service';
 import {PingController} from "./controllers/ping/ping.controller";
 
 @Module({
@@ -8,4 +8,5 @@ import {PingController} from "./controllers/ping/ping.controller";
   controllers: [AppController, PingController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}
