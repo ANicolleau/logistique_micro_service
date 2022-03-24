@@ -29,6 +29,6 @@ class SupplyProductDto {
 export class SupplyInputDto {
     @ApiProperty()
     supplyId: string;
-    @ApiProperty({type: SupplyProductDto})
+    @ApiProperty({type: [SupplyProductDto]})
     products: SupplyProductDto[];
 }
