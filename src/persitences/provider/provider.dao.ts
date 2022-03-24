@@ -1,7 +1,7 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
-export class StockDao {
+export class ProviderDao {
     @PrimaryGeneratedColumn()
     id: string;
 
@@ -20,7 +20,7 @@ export class StockDao {
     }
 }
 
-export class SupplyToAddDao {
+export class ProviderToAddDao {
     product_id: string;
     quantity: number;
 
