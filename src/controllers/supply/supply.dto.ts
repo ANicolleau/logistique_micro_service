@@ -1,3 +1,5 @@
+import {ApiProperty} from "@nestjs/swagger";
+
 export class SupplySummaryDto {
     constructor(nbSupplies: number, totalNbProducts: number, totalPurchasePrice: number) {
         this.nbSupplies = nbSupplies;
@@ -10,16 +12,23 @@ export class SupplySummaryDto {
     totalPurchasePrice: number;
 }
 
-interface SupplyProductDto {
+class SupplyProductDto {
+    @ApiProperty()
     ean: string;
+    @ApiProperty()
     name: string;
+    @ApiProperty()
     description: string;
+    @ApiProperty()
     purchasePricePerUnit: number;
+    @ApiProperty()
     quantity: number;
 }
 
 
-export interface SupplyInputDto {
+export class SupplyInputDto {
+    @ApiProperty()
     supplyId: string;
+    @ApiProperty({type: SupplyProductDto})
     products: SupplyProductDto[];
 }
