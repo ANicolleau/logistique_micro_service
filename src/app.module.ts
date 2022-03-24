@@ -9,9 +9,11 @@ import {SupplyRepositoryService} from "./persitences/supply/supply-repository.se
 import {SupplyDao} from "./persitences/supply/supply.dao";
 import {SupplySummaryDao} from "./persitences/supply/supply-summary.dao";
 import {TypeOrmModule} from "@nestjs/typeorm";
+import {SupplyService} from "./applications/supply/supply";
+import {HttpModule} from "@nestjs/axios";
 
 @Module({
-    imports: [TypeOrmModule.forRoot({
+    imports: [HttpModule, TypeOrmModule.forRoot({
         type: 'postgres',
         host: 'cours-architecture-db.florianlafuente.com',
         port: 12345,
@@ -26,7 +28,7 @@ import {TypeOrmModule} from "@nestjs/typeorm";
     }),
         TypeOrmModule.forFeature([SupplySummaryDao, SupplyDao])],
     controllers: [AppController, PingController, SupplyController],
-    providers: [AppService, SupplyUsecase, SupplySummaryRepositoryService, SupplyRepositoryService],
+    providers: [AppService, SupplyUsecase, SupplySummaryRepositoryService, SupplyRepositoryService, SupplyService],
 })
 export class AppModule {
 }

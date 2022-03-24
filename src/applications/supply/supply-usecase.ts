@@ -15,3 +15,11 @@ export class SupplyUsecase {
         return new SupplySummary(supplySummary.nbSupplies, supplySummary.totalNbProducts, supplySummary.totalPurchasePrice)
     }
 }
+
+export interface SupplyProductUseCase {
+    ean: string;
+    name: string;
+    description: string;
+    purchasePricePerUnit: number;
+    quantity: number;
+}
