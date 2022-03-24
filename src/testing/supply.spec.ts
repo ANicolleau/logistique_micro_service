@@ -4,9 +4,10 @@ import { INestApplication } from '@nestjs/common';
 import {AppModule} from "../app.module";
 import {SupplyController} from "../controllers/supply/supply.controller";
 import {SupplyInputDto} from "../controllers/supply/supply.dto";
-import {SupplyService} from "../applications/supply/supply";
 import {StockRepositoryService} from "../persitences/stock/stock-repository.service";
 import {HttpModule} from "@nestjs/axios";
+import {SupplyUsecase} from "../applications/supply/supply-usecase";
+import {SupplySummaryRepositoryService} from "../persitences/supply/supply-summary-repository.service";
 
 describe('SupplyController', () => {
   let app: INestApplication;
@@ -15,7 +16,7 @@ describe('SupplyController', () => {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule, HttpModule],
       controllers: [SupplyController],
-      providers: [SupplyService, StockRepositoryService]
+      providers: [SupplyUsecase, StockRepositoryService, StockRepositoryService, SupplySummaryRepositoryService]
     }).compile();
 
     app = moduleFixture.createNestApplication();

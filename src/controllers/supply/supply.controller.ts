@@ -3,8 +3,7 @@ import {SupplySummaryDto} from "./supply.dto";
 import {SupplyUsecase} from "../../applications/supply/supply-usecase";
 import {ApiResponse} from "@nestjs/swagger";
 import {SupplyInputDto} from "./supply.dto";
-import {SupplyService} from "../../applications/supply/supply";
-import {SupplyProductUseCase} from "../../applications/supply/supply-usecase";
+import {SupplyProductUseCase} from "../../applications/supply/supply";
 
 
 @Controller('api/supply')
@@ -13,6 +12,7 @@ export class SupplyController {
     }
 
     @Get('summary')
+    @ApiResponse({status: 200, description: 'Get summary of all supplies'})
     public async getSummary(): Promise<SupplySummaryDto> {
         const supplySummary = await this.supplyUsecase.getSummary()
         return new SupplySummaryDto(supplySummary.nbSupplies, supplySummary.totalNbProducts, supplySummary.totalPurchasePrice)
