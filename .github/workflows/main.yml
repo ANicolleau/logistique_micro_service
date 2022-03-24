@@ -26,7 +26,7 @@ jobs:
       run: npm install
     
     - name: Test
-      run: npm test:cov
+      run: npm run test:cov
         
     - name: Lint
       run: eslint . --ext .js,.ts
