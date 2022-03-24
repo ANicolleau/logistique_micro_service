@@ -24,9 +24,13 @@ export class SupplyUsecase {
     }
 
     public async addSupply(products: SupplyProduct[]): Promise<void> {
+        let price = 0
+        let quantity = 0
         for (const product of products) {
             // TODO: remplacer ean par l'id du catalogue
             await this.stockRepository.addStock(new SupplyToAddDao(product.ean, product.quantity))
+            price += product.quantity * product.purchasePricePerUnit;
+            quantity += product.quantity;
         }
         const supplySummary = await this.supplySummaryRepositoryService.get()
         supplySummary.nbSupplies += 1
