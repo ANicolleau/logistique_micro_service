@@ -28,6 +28,6 @@ export class SupplyToAddDao {
     constructor(product_id: string, quantity: number) {
         this.productId = product_id;
         this.quantity = quantity;
-        this.status = 'Supply';
+        this.status = "Supply";
     }
 }

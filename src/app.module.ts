@@ -8,12 +8,11 @@ import {SupplyRepositoryService} from "./persitences/supply/supply-repository.se
 import {SupplyDao} from "./persitences/supply/supply.dao";
 import {SupplySummaryDao} from "./persitences/supply/supply-summary.dao";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {HttpModule} from "@nestjs/axios";
 import {StockRepositoryService} from "./persitences/stock/stock-repository.service";
 import {SupplyController} from "./controllers/supply/supply.controller";
 
 @Module({
-    imports: [HttpModule, TypeOrmModule.forRoot({
+    imports: [TypeOrmModule.forRoot({
         type: 'postgres',
         host: 'cours-architecture-db.florianlafuente.com',
         port: 12345,
