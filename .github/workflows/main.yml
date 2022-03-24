@@ -29,5 +29,5 @@ jobs:
       run: npm run test:cov
         
     - name: Lint
-      run: eslint . --ext .js,.ts
+      run: npm run lint
       
