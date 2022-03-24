@@ -11,4 +11,6 @@ export class StockRepositoryService {
 
         await axios.post(server + path, supplyToAdd)
     }
+
+
 }
