@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
-import {SupplySummaryDao} from "./supply-summary.dao";
+import {SupplySummaryDao, SupplySummaryToAddDao, SupplySummaryToUpdateDao} from "./supply-summary.dao";
 
 
 @Injectable()
@@ -13,7 +13,14 @@ export class SupplySummaryRepositoryService {
     }
 
     public async get(): Promise<SupplySummaryDao> {
-        return new SupplySummaryDao("1", 10, 10, 10)
-        // return this.database.find(); TODO BDD
+        return await this.database.findOne(); //TODO BDD
+    }
+
+    public async create(): Promise<SupplySummaryDao> {
+        return await this.database.save(new SupplySummaryToAddDao(0, 0, 0));
+    }
+
+    public async update(supplySummaryToUpdateDao: SupplySummaryToUpdateDao): Promise<void> {
+        await this.database.update(await this.database.findOne(), supplySummaryToUpdateDao)
     }
 }

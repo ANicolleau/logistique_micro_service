@@ -21,3 +21,36 @@ export class SupplySummaryDao {
         this.totalPurchasePrice = totalPurchasePrice;
     }
 }
+
+
+@Entity()
+export class SupplySummaryToAddDao {
+    @Column()
+    nbSupplies: number;
+
+    @Column()
+    totalNbProducts: number;
+
+    @Column()
+    totalPurchasePrice: number;
+
+    constructor(nbSupplies: number, totalNbProducts: number, totalPurchasePrice: number) {
+        this.nbSupplies = nbSupplies;
+        this.totalNbProducts = totalNbProducts;
+        this.totalPurchasePrice = totalPurchasePrice;
+    }
+}
+
+export class SupplySummaryToUpdateDao {
+    nbSupplies: number;
+
+    totalNbProducts: number;
+
+    totalPurchasePrice: number;
+
+    constructor(nbSupplies: number, totalNbProducts: number, totalPurchasePrice: number) {
+        this.nbSupplies = nbSupplies;
+        this.totalNbProducts = totalNbProducts;
+        this.totalPurchasePrice = totalPurchasePrice;
+    }
+}
