@@ -1,9 +1,7 @@
-import {Body, Controller, HttpCode, Post, Get} from "@nestjs/common";
-import {RequiredSupplyDto, SupplySummaryDto} from "./supply.dto";
+import {Body, Controller, Get, HttpCode, Post} from "@nestjs/common";
+import {RequiredSupplyDto, SupplyInputDto, SupplySummaryDto} from "./supply.dto";
 import {SupplyUsecase} from "../../applications/supply/supply-usecase";
 import {ApiResponse} from "@nestjs/swagger";
-import {SupplyInputDto, SupplySummaryDto} from "./supply.dto";
-import {SupplyProduct} from "../../applications/supply/supply";
 import {RequiredSupply, SupplyProduct} from "../../applications/supply/supply";
 
 
