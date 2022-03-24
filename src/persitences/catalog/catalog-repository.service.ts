@@ -20,7 +20,7 @@ export class CatalogRepositoryService {
 
         const result = await axios.post(server + path, product)
         //@ts-ignore
-        return result.data
+        return result.data.id
     }
 
 
