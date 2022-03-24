@@ -35,6 +35,7 @@ class SupplyProductDto {
 }
 
 export class RequiredSupplyDto {
+    @ApiProperty()
     @IsNotEmpty()
     @IsString()
     productId: string;

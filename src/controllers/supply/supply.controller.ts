@@ -33,14 +33,14 @@ export class SupplyController {
         }
 
         await this.supplyUsecase.addSupply(products);
-        return ;
+        return;
     }
 
     @Post('supply-needed')
     @HttpCode(204)
-    @ApiResponse({status: 204, description: 'Add a new supply to the stock'})
+    @ApiResponse({status: 500, description: 'Not working but should return a required Supply'})
     public async requiredSupply(@Body() requiredSupply: RequiredSupplyDto) {
         await this.supplyUsecase.requiredSupply(new RequiredSupply(requiredSupply.productId));
-        return ;
+        return;
     }
 }
